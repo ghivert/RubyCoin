@@ -1,14 +1,16 @@
 pragma solidity ^0.4.23;
 
+import "./ownership/Ownable.sol";
+
 /// @title RubyCoin Contract
 /// @dev This contract's goal is to provide a simple, working implementation of
 ///  ERC-20 token in order to be used with a Ruby frontend!
-contract RubyCoin {
+contract RubyCoin is Ownable {
   /// @dev Stores the balance for every account.
   mapping (address => uint) balances;
   /// @dev Stores the allowance for every account.
   ///   Allowance is stored as (SpenderAddress => ValueAllowedToSpent).
-  mapping (address => mapping (address => uint)) allowance;
+  mapping (address => mapping (address => uint)) withdrawAllowance;
 
   event Transfer(
     address indexed _from,
@@ -33,7 +35,12 @@ contract RubyCoin {
   string public symbol;
   uint8  public decimals;
 
-  constructor(uint _major, uint _minor, uint _patch) {
+  constructor(
+    address _owner,
+    uint _major,
+    uint _minor,
+    uint _patch
+  ) Ownable(_owner) public {
     version = Semver(_major, _minor, _patch);
     name = "RubyCoin";
     symbol = "RBC";
@@ -41,13 +48,13 @@ contract RubyCoin {
   }
 
   /// @dev Returns the total supply of existing token.
-  function totalSupply() public view returns (uint totalSupply) {
+  function totalSupply() public view returns (uint) {
     return 1e9;
   }
 
   /// @dev Returns the balance of tokens of someone.
   /// @param _owner The person you want to check balance.
-  function balanceOf(address _owner) public view returns (uint balanceOf) {
+  function balanceOf(address _owner) public view returns (uint) {
     return balances[_owner];
   }
 
@@ -61,7 +68,7 @@ contract RubyCoin {
     } else {
       balances[msg.sender] -= _value;
       balances[_to] += _value;
-      Transfer(msg.sender, _to, balance);
+      emit Transfer(msg.sender, _to, _value);
       return true;
     }
   }
@@ -71,8 +78,8 @@ contract RubyCoin {
   /// @param _value The maximum value the spender will be able to withdraw.
   /// @return True if approving successfull, False otherwise.
   function approve(address _spender, uint _value) public returns (bool success) {
-    allowance[msg.sender][_spender] = _value;
-    Approval(msg.sender, _spender, _value);
+    withdrawAllowance[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
     return true;
   }
 
@@ -85,14 +92,14 @@ contract RubyCoin {
     address _from,
     address _to,
     uint _value
-  ) public returns (bool success) {
-    if (allowance[_from][msg.sender] < _value) {
+  ) public onlyOwner returns (bool success) {
+    if (withdrawAllowance[_from][msg.sender] < _value) {
       revert();
     } else {
-      allowance[_from][msg.sender] -= _value;
+      withdrawAllowance[_from][msg.sender] -= _value;
       balances[_to] += _value;
       balances[_from] -= _value;
-      Transfer(_from, _to, _value);
+      emit Transfer(_from, _to, _value);
       return true;
     }
   }
@@ -105,6 +112,6 @@ contract RubyCoin {
     address _owner,
     address _spender
   ) public view returns (uint remaining) {
-    return allowance[_owner][_spender];
+    return withdrawAllowance[_owner][_spender];
   }
 }
