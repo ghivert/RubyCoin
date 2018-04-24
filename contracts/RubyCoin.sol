@@ -22,19 +22,22 @@ contract RubyCoin {
     uint _value
   );
 
-  /// @dev Returns the name of the coin, for better display in exchanges.
-  function name() public view returns (string name) {
-    return "RubyCoin";
+  struct Semver {
+    uint major;
+    uint minor;
+    uint patch;
   }
 
-  /// @dev Returns the symbol of the coin, for better display in exchanges.
-  function symbol() public view returns (string symbol) {
-    return "RBC";
-  }
+  Semver public version; // Version of the contract, following Semver.
+  string public name;
+  string public symbol;
+  uint8  public decimals;
 
-  /// @dev Returns the number of decimals in the token balance.
-  function decimals() public view returns (uint decimals) {
-    return 6;
+  constructor(uint _major, uint _minor, uint _patch) {
+    version = Semver(_major, _minor, _patch);
+    name = "RubyCoin";
+    symbol = "RBC";
+    decimals = 6;
   }
 
   /// @dev Returns the total supply of existing token.
