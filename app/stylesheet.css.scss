@@ -1,0 +1,36 @@
+@import './style/normalize';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import './style/colors';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans Pro';
+}
+
+.navbar {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+  line-height: 1.5;
+
+  a {
+    padding: 12px;
+    color: $grey;
+    text-decoration: none;
+
+    &.active {
+      color: $active_blue;
+    }
+
+    i {
+      padding: 6px;
+    }
+  }
+}
+
+.app {
+  max-width: 720px;
+  margin: auto;
+}
