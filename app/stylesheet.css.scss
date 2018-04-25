@@ -10,6 +10,10 @@ body {
   font-family: 'Source Sans Pro';
 }
 
+img {
+  max-width: 100%;
+}
+
 .navbar {
   display: flex;
   border-bottom: 1px solid rgba(0, 40, 100, 0.12);
