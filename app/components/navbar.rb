@@ -1,20 +1,22 @@
-class NavBar
-  include Inesita::Component
+module Components
+  class NavBar
+    include Inesita::Component
 
-  def render
-    nav.navbar do
-      icon icon_name: :home, label: "Home", url: :home
-      icon icon_name: :credit_card, label: "Wallet", url: :wallet
+    def render
+      nav.navbar do
+        icon icon_name: :home, label: "Home", url: :home
+        icon icon_name: :credit_card, label: "Wallet", url: :wallet
+      end
     end
-  end
 
-  private
+    private
 
-  def icon(opts)
-    a href: router.url_for(opts[:url]),
-      class: router.current_url?(opts[:url]) ? "active" : "" do
-      i.feather.send("icon_#{opts[:icon_name].to_s}")
-      text opts[:label]
+    def icon(opts)
+      a href: router.url_for(opts[:url]),
+        class: class_names(active: router.current_url?(opts[:url])) do
+        i.feather.send("icon_#{opts[:icon_name].to_s}")
+        text opts[:label]
+      end
     end
   end
 end

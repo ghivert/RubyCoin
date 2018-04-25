@@ -17,7 +17,7 @@ class Application
 
   def render
     div.container do
-      component NavBar
+      component Components::NavBar
       div.app do
         component router
       end
