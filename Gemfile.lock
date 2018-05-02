@@ -2,14 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
-    autoprefixer-rails (8.3.0)
-      execjs
-    bootstrap (4.1.0)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
     concurrent-ruby (1.0.5)
-    execjs (2.7.0)
     ffi (1.9.23)
     hike (1.2.3)
     inesita (0.7.0)
@@ -29,6 +22,8 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    normalize-scss (7.0.1)
+      sass (~> 3.3)
     opal (0.11.0)
       ast (>= 2.3.0)
       hike (~> 1.2)
@@ -42,7 +37,6 @@ GEM
       opal (~> 0)
     parser (2.3.3.1)
       ast (~> 2.2)
-    popper_js (1.12.9)
     rack (2.0.4)
     rack-rewrite (1.5.1)
     rb-fsevent (0.10.3)
@@ -71,10 +65,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap
   inesita (~> 0.7.0)
   inesita-livereload (~> 0.1.0)
   inesita-router (~> 0.2.0)
+  normalize-scss
   scss
   slim
 

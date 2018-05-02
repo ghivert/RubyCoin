@@ -1,4 +1,4 @@
-# ethereum-microsoft
+# RubyCoin
 
 ```sh
 $ bundle install
