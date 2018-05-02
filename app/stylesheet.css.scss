@@ -1,6 +1,7 @@
 @import './style/normalize';
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import './style/colors';
+@import './style/container';
 
 * {
   box-sizing: border-box;
@@ -15,21 +16,29 @@ img {
 }
 
 .navbar {
-  display: flex;
   border-bottom: 1px solid rgba(0, 40, 100, 0.12);
-  line-height: 1.5;
 
-  a {
-    padding: 12px;
-    color: $grey;
-    text-decoration: none;
+  &_content {
+    display: flex;
+    line-height: 1.5;
 
-    &.active {
-      color: $active_blue;
-    }
+    a {
+      padding: 12px 0;
+      color: $grey;
+      text-decoration: none;
+      margin: 0 12px;
+      transition: color .3s ease-in;
+      transition: border-bottom .3s ease-in;
+      border-bottom: 1px solid transparent;
 
-    i {
-      padding: 6px;
+      &.active {
+        color: $active_blue;
+        border-bottom: 1px solid $active_blue;
+      }
+
+      i {
+        padding-right: 6px;
+      }
     }
   }
 }

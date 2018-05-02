@@ -4,8 +4,10 @@ module Components
 
     def render
       nav.navbar do
-        icon icon_name: :home, label: "Home", url: :home
-        icon icon_name: :credit_card, label: "Wallet", url: :wallet
+        div.container.navbar__content do
+          icon icon_name: :home, label: "Home", url: :home
+          icon icon_name: :credit_card, label: "Wallet", url: :wallet
+        end
       end
     end
 
