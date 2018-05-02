@@ -3,7 +3,7 @@ module Components
     include Inesita::Component
 
     def render
-      div.jumbotron.text_center.bg_light do
+      div.wallet do
         p do
           text %{
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

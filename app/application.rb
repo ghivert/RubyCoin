@@ -1,3 +1,6 @@
+# require Opal
+require 'opal'
+
 # require Inesita
 require 'inesita'
 require 'inesita-router'

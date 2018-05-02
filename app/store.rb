@@ -1,17 +1,9 @@
 class Store
   include Inesita::Injection
 
-  attr_accessor :counter
+  attr_accessor :bitcoin_value
 
   def init
-    @counter = 0
-  end
-
-  def increase
-    @counter += 1
-  end
-
-  def decrease
-    @counter -= 1
+    @bitcoin_value = {}
   end
 end
