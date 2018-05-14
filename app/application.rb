@@ -19,11 +19,12 @@ class Application
   inject Store
 
   def render
-    div do
+    div class: "main" do
       component Components::NavBar
       div.app do
         component router
       end
+      component Components::Footer
     end
   end
 end

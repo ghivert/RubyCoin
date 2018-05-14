@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import './style/colors';
 @import './style/container';
+@import './style/components/footer';
+@import './style/components/btn';
+@import './style/helpers';
 
 * {
   box-sizing: border-box;
@@ -15,6 +18,10 @@ img {
   max-width: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar {
   border-bottom: 1px solid rgba(0, 40, 100, 0.12);
 
@@ -25,7 +32,6 @@ img {
     a {
       padding: 12px 0;
       color: $grey;
-      text-decoration: none;
       margin: 0 12px;
       transition: color .3s ease-in;
       transition: border-bottom .3s ease-in;
@@ -43,7 +49,18 @@ img {
   }
 }
 
+p {
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .app {
   max-width: 720px;
   margin: auto;
+  flex: 1;
 }
