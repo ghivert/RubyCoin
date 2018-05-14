@@ -1,5 +1,4 @@
-# require '../lib/bitcoin'
-# require '../lib/bitcoin/price'
+require 'lib/bitcoin'
 
 module Components
   class Home
@@ -11,3 +10,5 @@ module Components
     end
   end
 end
+
+Bitcoin.get_current_price

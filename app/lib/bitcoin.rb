@@ -1,4 +1,4 @@
-require './bitcoin/price'
+require 'lib/bitcoin/price'
 
 module Bitcoin
   def self.get_current_price
