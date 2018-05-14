@@ -12,3 +12,4 @@ module Components
 end
 
 Bitcoin.get_current_price
+Bitcoin.get_past_month_price
