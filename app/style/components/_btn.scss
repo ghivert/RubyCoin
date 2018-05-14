@@ -1,0 +1,49 @@
+.btn {
+  color: #467fcf;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #467fcf;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.84615385;
+  border-radius: 3px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-outline-primary {
+  color: #467fcf;
+  background-color: transparent;
+  background-image: none;
+  border-color: #467fcf;
+}
+
+.btn-sm, .btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.33333333;
+  border-radius: 3px;
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: .03em;
+  font-size: 0.8125rem;
+  min-width: 2.375rem;
+}
+
+.btn-sm, .btn-group-sm > .btn {
+  font-size: 0.75rem;
+  min-width: 1.625rem;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
