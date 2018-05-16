@@ -43,13 +43,15 @@ module Components
           },
           scales: {
             xAxes: [{
+              display: false,
               ticks: {
-                fontFamily: "Source Sans Pro",
+                fontFamily: "Source Sans Pro"
               }
             }],
             yAxes: [{
+              display: false,
               ticks: {
-                fontFamily: "Source Sans Pro",
+                fontFamily: "Source Sans Pro"
               }
             }]
           }
