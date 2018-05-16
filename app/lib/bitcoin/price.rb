@@ -1,4 +1,7 @@
+# Core libraries
 require 'promise'
+
+# Libraries
 require 'lib/net'
 
 ENDPOINT = 'https://api.coindesk.com/v1'

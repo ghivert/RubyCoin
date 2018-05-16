@@ -1,7 +1,11 @@
+# Core libraries
 require "date"
+
+# Libraries
 require "lib/bitcoin"
 require "lib/chart"
 
+# Home inside components
 require_tree "./home"
 
 module Components

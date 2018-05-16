@@ -1,6 +1,8 @@
+# Core libraries
 require 'promise'
 require 'json'
 
+# Complete rewrite in order to skip opal-jquery dependency.
 module Net
   class HTTP
     class << self

@@ -1,3 +1,4 @@
+# Core libraries
 require "securerandom"
 
 class Chart
