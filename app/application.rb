@@ -1,16 +1,18 @@
 # require Opal
-require 'opal'
+require "opal"
 
 # require Inesita
-require 'inesita'
-require 'inesita-router'
+require "inesita"
+require "inesita-router"
 
 # require main parts of application
-require 'router'
-require 'store'
+require "router"
+require "store"
+
+require "lib/bitcoin"
 
 # require all components
-require_tree './components'
+require_tree "./components"
 
 class Application
   include Inesita::Component
