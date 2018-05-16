@@ -1,3 +1,0 @@
-class Reducer
-
-end
