@@ -23,7 +23,7 @@ class Application
   def render
     div class: "main" do
       component Components::NavBar
-      div.app do
+      div.app.container do
         component router
       end
       component Components::Footer

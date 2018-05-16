@@ -4,7 +4,7 @@ module Components
       include Inesita::Component
 
       def initialize(bitcoin_values)
-        @chart = ::Chart.new height: "500px", options: {
+        @chart = ::Chart.new height: "250px", options: {
           type: "line",
           data: generate_data(bitcoin_values),
           options: generate_options
@@ -40,6 +40,18 @@ module Components
           },
           hover: {
             intersect: false
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                fontFamily: "Source Sans Pro",
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                fontFamily: "Source Sans Pro",
+              }
+            }]
           }
         }
       end

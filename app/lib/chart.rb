@@ -13,7 +13,7 @@ class Chart
 
   def render
     div.chart_container style: "position: relative; #{@height == nil ? "" : "height:#@height"}; #{@width == nil ? "" : "width:#@width"};" do
-      canvas id: @id, hook: hook(:render_chart)
+      canvas height: @height, id: @id, hook: hook(:render_chart)
     end
   end
 
