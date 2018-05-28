@@ -4,13 +4,11 @@ module Components
 
     def render
       div.wallet do
-        p do
-          text %{
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          }
+        div.card.card_wallet__balance do
+          text store.balance_of_rubycoin.to_s(10)
+        end
+        div.card.card_wallet__transactions do
+          text store.balance_of_rubycoin.to_s(2)
         end
       end
     end
