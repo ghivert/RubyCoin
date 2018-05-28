@@ -10,6 +10,7 @@ require "router"
 require "store"
 
 require "lib/bitcoin"
+require "lib/big_number"
 
 # require all components
 require_tree "./components"
