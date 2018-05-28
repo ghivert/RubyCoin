@@ -44,6 +44,7 @@ contract RubyCoin is Ownable {
     name = "RubyCoin";
     symbol = "RBC";
     decimals = 6;
+    balances[msg.sender] = 1e9;
   }
 
   /// @dev Returns the total supply of existing token.
