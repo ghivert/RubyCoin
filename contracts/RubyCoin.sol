@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "./ownership/Ownable.sol";
 
@@ -36,11 +36,10 @@ contract RubyCoin is Ownable {
   uint8  public decimals;
 
   constructor(
-    address _owner,
     uint _major,
     uint _minor,
     uint _patch
-  ) Ownable(_owner) public {
+  ) Ownable() public {
     version = Semver(_major, _minor, _patch);
     name = "RubyCoin";
     symbol = "RBC";
@@ -48,7 +47,7 @@ contract RubyCoin is Ownable {
   }
 
   /// @dev Returns the total supply of existing token.
-  function totalSupply() public view returns (uint) {
+  function totalSupply() public pure returns (uint) {
     return 1e9;
   }
 

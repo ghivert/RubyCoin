@@ -5,8 +5,8 @@ pragma solidity ^0.4.23;
 contract Ownable {
   address public owner;
 
-  constructor(address _owner) public {
-    owner = _owner;
+  constructor() public {
+    owner = msg.sender;
   }
 
   event OwnershipTransferred(
