@@ -11,6 +11,7 @@ require "store"
 
 require "lib/bitcoin"
 require "lib/big_number"
+require "lib/web3"
 
 # require all components
 require_tree "./components"
