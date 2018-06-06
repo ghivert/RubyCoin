@@ -1,10 +1,13 @@
 class Store
   include Inesita::Injection
 
-  attr_accessor :bitcoin_values
-  attr_accessor :bitcoin_current_value
-  attr_reader   :rubycoin_balance
-  attr_reader   :ethereum_balance
+  attr_reader :bitcoin_values
+  attr_reader :bitcoin_current_value
+  attr_reader :rubycoin_balance
+  attr_reader :ethereum_balance
+
+  ETH = 1
+  RBC = 2
 
   def init
     contract_interface = JSON.parse(`document.getElementsByName('contract-interface')[0].content`)
@@ -18,12 +21,41 @@ class Store
         ::Web3::Eth.contract(contract_interface[:abi])
                    .at(contract_interface[:networks]["5777"][:address])
     }
+    @send_coins = RBC
+    @sending = {
+      value_content: 0,
+      to: ""
+    }
     get_bitcoin_prices
     get_rubycoin_balance
     get_ethereum_balance
   end
 
-  private
+  def sending_rbc?
+    @send_coins == RBC
+  end
+
+  def sending_eth?
+    @send_coins == ETH
+  end
+
+  def send_eth
+    @send_coins = ETH
+    render!
+  end
+
+  def send_rbc
+    @send_coins = RBC
+    render!
+  end
+
+  def update_value_content(value)
+    @sending[:value_content] = value
+  end
+
+  def update_recipient_content(value)
+    @sending[:to] = value
+  end
 
   def get_bitcoin_prices
     Bitcoin.get_current_price.then { |response|
