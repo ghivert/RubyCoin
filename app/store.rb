@@ -5,6 +5,7 @@ class Store
   attr_reader :bitcoin_current_value
   attr_reader :rubycoin_balance
   attr_reader :ethereum_balance
+  attr_reader :sending
 
   ETH = 1
   RBC = 2
@@ -41,11 +42,13 @@ class Store
 
   def send_eth
     @send_coins = ETH
+    reset_sending
     render!
   end
 
   def send_rbc
     @send_coins = RBC
+    reset_sending
     render!
   end
 
@@ -85,5 +88,12 @@ class Store
       @ethereum_balance = ::BigNumber.new(Web3.from_wei(result))
       render!
     end
+  end
+
+  private
+
+  def reset_sending
+    @sending[:value_content] = 0
+    @sending[:to] = ""
   end
 end
