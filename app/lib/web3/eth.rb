@@ -9,5 +9,11 @@ module Web3
     def self.accounts
       `web3.eth.accounts`
     end
+
+    def self.get_balance(account, &block)
+      `web3.eth.getBalance(#{account}, function(error, result) {
+        #{block.call(`error`, `result`)}
+      })`
+    end
   end
 end
