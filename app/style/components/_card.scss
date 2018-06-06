@@ -5,6 +5,11 @@
   margin: 24px 0;
 
   &-header {
+    border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+    background-color: rgba(205, 222, 249, 0.12);
+    padding: 6px 24px;
+    font-weight: bold;
+
     &_variations {
       display: flex;
       padding: 24px 0;

@@ -20,7 +20,9 @@ module Components
       if bitcoin_values != {} && bitcoin_current_value != nil
         div.card do
           variation = compute_diff_percentage(bitcoin_current_value, bitcoin_values)
-
+          div.card_header do
+            "Bitcoin"
+          end
           div.card_header__variations do
             component VariationCell.new("#{bitcoin_current_value.round(2)} €", "Today")
             div style: "border-right: 1px solid rgba(0, 40, 100, 0.12);"
