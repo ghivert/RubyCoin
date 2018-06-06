@@ -36,11 +36,45 @@
      border-bottom: none;
   }
 
-  &-wallet_rubycoin-balance {
+  .send-coins {
+    display: flex;
+    justify-content: space-around;
+    padding: 24px;
 
-  }
+    &_coins-selector {
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.2rem;
+      align-items: center;
 
-  &-wallet_ethereum-balance {
+      .active {
+        background-color: $active_blue;
+        color: white;
+        font-weight: bold;
+      }
+    }
 
+    .sender {
+      padding: 0 24px;
+
+      &-inside {
+        max-width: 65%;
+        margin: auto;
+      }
+
+      input {
+        display: block;
+        margin-top: 6px;
+        width: 100%;
+        border: 1px solid rgba(0, 40, 100, 0.12);
+        border-radius: 3px;
+        padding: 6px;
+        outline: none;
+
+        &::placeholder {
+          color: $grey;
+        }
+      }
+    }
   }
 }
