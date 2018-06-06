@@ -3,13 +3,15 @@ class Store
 
   attr_accessor :bitcoin_values
   attr_accessor :bitcoin_current_value
-  attr_reader   :balance_of_rubycoin
+  attr_reader   :rubycoin_balance
+  attr_reader   :ethereum_balance
 
   def init
     contract_interface = JSON.parse(`document.getElementsByName('contract-interface')[0].content`)
     @bitcoin_values = {}
     @bitcoin_current_value = nil
-    @balance_of_rubycoin = nil
+    @rubycoin_balance = nil
+    @ethereum_balance = nil
     @contract = {
       interface: contract_interface,
       instance:
@@ -17,7 +19,8 @@ class Store
                    .at(contract_interface[:networks]["5777"][:address])
     }
     get_bitcoin_prices
-    get_balance_of_rubycoin
+    get_rubycoin_balance
+    get_ethereum_balance
   end
 
   private
@@ -38,9 +41,16 @@ class Store
     }
   end
 
-  def get_balance_of_rubycoin
+  def get_rubycoin_balance
     @contract[:instance].balance_of(Web3::Eth.accounts[0]) do |error, result|
-      @balance_of_rubycoin = ::BigNumber.new(result)
+      @rubycoin_balance = ::BigNumber.new(result)
+      render!
+    end
+  end
+
+  def get_ethereum_balance
+    Web3::Eth.get_balance(Web3::Eth.accounts[0]) do |error, result|
+      @ethereum_balance = ::BigNumber.new(Web3.from_wei(result))
       render!
     end
   end
