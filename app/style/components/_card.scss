@@ -29,4 +29,18 @@
       }
     }
   }
+
+  .wallet-header {
+     justify-content: space-around;
+     padding: 24px 0;
+     border-bottom: none;
+  }
+
+  &-wallet_rubycoin-balance {
+
+  }
+
+  &-wallet_ethereum-balance {
+
+  }
 }
