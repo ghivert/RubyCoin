@@ -6,7 +6,7 @@ module Components
       nav.navbar do
         div.container.navbar__content do
           icon icon_name: :home, label: "Home", url: :home
-          icon icon_name: :credit_card, label: "Wallet", url: :wallet
+          # icon icon_name: :credit_card, label: "Wallet", url: :wallet
         end
       end
     end

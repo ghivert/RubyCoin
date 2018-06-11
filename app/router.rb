@@ -3,6 +3,6 @@ class Router
 
   def routes
     route '/', to: Components::Home, as: :home
-    route '/wallet', to: Components::Wallet, as: :wallet
+    # route '/wallet', to: Components::Wallet, as: :wallet
   end
 end

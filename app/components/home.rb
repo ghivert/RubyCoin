@@ -8,6 +8,8 @@ require "lib/chart"
 # Home inside components
 require_tree "./home"
 
+require "./wallet"
+
 module Components
   class Home
     include Inesita::Component
@@ -31,6 +33,8 @@ module Components
           component chart
         end
       end
+
+      component Wallet
     end
 
     private
