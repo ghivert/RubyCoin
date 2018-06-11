@@ -53,17 +53,17 @@ module Components
                 div.padding_6 do
                   label do
                     text "Amount"
-                    input.send_amount_field type: 'number', placeholder: '123.456', oninput: method(:update_value_content), value: store.sending[:value_content]
+                    input.send_amount_field type: 'number', placeholder: '123.456', onkeyup: method(:update_value_content), value: store.sending[:value_content]
                   end
                 end
                 div.padding_6 do
                   label do
                     text "To"
-                    input.send_address_field type: 'text', placeholder: '0xcbcb6bd2a1e6085584e323edafb5cf9bb8d77e44', oninput: method(:update_recipient_content), value: store.sending[:to]
+                    input.send_address_field type: 'text', placeholder: '0xcbcb6bd2a1e6085584e323edafb5cf9bb8d77e44', onkeyup: method(:update_recipient_content), value: store.sending[:to]
                   end
                 end
                 div.padding_6 do
-                  div class: "btn btn_outline_primary btn_sm" do
+                  div class: "btn btn_outline_primary btn_sm", onclick: method(:send_transaction) do
                     "Send!"
                   end
                 end
