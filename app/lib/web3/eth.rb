@@ -14,6 +14,16 @@ module Web3
       accounts[0]
     end
 
+    def self.send_transaction(options, &block)
+      `web3.eth.sendTransaction({
+        from: #{options[:from]},
+        to: #{options[:to]},
+        value: #{options[:value]}
+      }, function(error, result) {
+        #{block.call(`error`, `result`)}
+      })`
+    end
+
     def self.get_balance(account, &block)
       `web3.eth.getBalance(#{account}, function(error, result) {
         #{block.call(`error`, `result`)}
