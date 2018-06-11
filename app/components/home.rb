@@ -17,7 +17,7 @@ module Components
       bitcoin_values = store.bitcoin_values
       bitcoin_current_value = store.bitcoin_current_value
 
-      if bitcoin_values != {} && bitcoin_current_value != nil
+      if bitcoin_values != {} && bitcoin_current_value != nil && false # I don't want to display it yet.
         div.card do
           variation = compute_diff_percentage(bitcoin_current_value, bitcoin_values)
           div.card_header do
