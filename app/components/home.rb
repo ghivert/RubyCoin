@@ -15,6 +15,14 @@ module Components
     include Inesita::Component
 
     def render
+      bitcoin_chart
+
+      component Wallet
+    end
+
+    private
+
+    def bitcoin_chart
       # Shortcuts for repetitive values
       bitcoin_values = store.bitcoin_values
       bitcoin_current_value = store.bitcoin_current_value
@@ -26,18 +34,20 @@ module Components
             "Bitcoin"
           end
           div.card_header__variations do
-            component VariationCell.new("#{bitcoin_current_value.round(2)} €", "Today")
+            component VariationCell.new(
+              "#{bitcoin_current_value.round(2)} €",
+              "Today"
+            )
             div style: "border-right: 1px solid rgba(0, 40, 100, 0.12);"
-            component VariationCell.new("#{variation.round(2)} %", "Since yesterday") unless variation.nil?
+            component VariationCell.new(
+              "#{variation.round(2)} %",
+              "Since yesterday"
+            ) unless variation.nil?
           end
           component chart
         end
       end
-
-      component Wallet
     end
-
-    private
 
     def chart
       @chart ||= Chart.new(store.bitcoin_values)
