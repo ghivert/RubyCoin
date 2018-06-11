@@ -8,12 +8,12 @@ class Store
   attr_reader :sending
   attr_reader :contract
   attr_reader :account
-  
+
   ETH = 1
   RBC = 2
 
   def init
-    contract_interface = JSON.parse(`document.getElementsByName('contract-interface')[0].content`)
+    contract_interface = JSON.parse `window.contractInterface`
     @account = Web3::Eth.account
     @bitcoin_values = {}
     @bitcoin_current_value = nil
