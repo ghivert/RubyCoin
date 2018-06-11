@@ -19,15 +19,20 @@ module Web3
               name = `elem.name`
               inputs_length = `elem.inputs.length`
               define_singleton_method(name.underscore) do |*args, &block|
-                 if inputs_length != args.length
-                   raise ArgumentError, "wrong number of arguments (#{args.length} for #{inputs_length})"
-                 end
+                if inputs_length != args.length
+                  raise ArgumentError, "wrong number of arguments (#{args.length} for #{inputs_length})"
+                end
                 @instance.JS[name].call(*args, -> (error, result) do
                   block.call(error, result)
                 end)
               end
-            elsif `elem.type` == "Event" then
-              # Do something in the future with Events.
+            elsif `elem.type` == "event" then
+              name = `elem.name`
+              define_singleton_method(name) do |*args, &block|
+                @instance.JS[name].call(*args, -> (error, result) do
+                  block.call(error, result)
+                end)
+              end
             end
           end
         end

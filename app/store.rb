@@ -6,6 +6,7 @@ class Store
   attr_reader :rubycoin_balance
   attr_reader :ethereum_balance
   attr_reader :sending
+  attr_reader :contract
   attr_reader :account
   
   ETH = 1
@@ -32,6 +33,7 @@ class Store
     get_bitcoin_prices
     get_rubycoin_balance
     get_ethereum_balance
+    subscribe_transfer
   end
 
   def sending_rbc?
@@ -93,6 +95,26 @@ class Store
   end
 
   private
+
+  def modify_rubycoin_balance(method, value)
+    @rubycoin_balance = @rubycoin_balance.send(method, value)
+  end
+
+  def subscribe_transfer
+    @contract[:instance].Transfer({}) do |error, result|
+      if error.nil?
+        args = result.JS[:args]
+        value = args.JS[:_value]
+        to = args.JS[:_to]
+        from = args.JS[:_from]
+        if from == @account || to == @account
+          modify_rubycoin_balance("minus", value) if from == @account
+          modify_rubycoin_balance("plus", value) if to == @account
+          render!
+        end
+      end
+    end
+  end
 
   def reset_sending
     @sending[:value_content] = 0
