@@ -6,12 +6,14 @@ class Store
   attr_reader :rubycoin_balance
   attr_reader :ethereum_balance
   attr_reader :sending
-
+  attr_reader :account
+  
   ETH = 1
   RBC = 2
 
   def init
     contract_interface = JSON.parse(`document.getElementsByName('contract-interface')[0].content`)
+    @account = Web3::Eth.account
     @bitcoin_values = {}
     @bitcoin_current_value = nil
     @rubycoin_balance = nil
@@ -77,14 +79,14 @@ class Store
   end
 
   def get_rubycoin_balance
-    @contract[:instance].balance_of(Web3::Eth.accounts[0]) do |error, result|
+    @contract[:instance].balance_of(@account) do |error, result|
       @rubycoin_balance = ::BigNumber.new(result)
       render!
     end
   end
 
   def get_ethereum_balance
-    Web3::Eth.get_balance(Web3::Eth.accounts[0]) do |error, result|
+    Web3::Eth.get_balance(@account) do |error, result|
       @ethereum_balance = ::BigNumber.new(Web3.from_wei(result))
       render!
     end
