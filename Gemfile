@@ -16,6 +16,9 @@ gem 'scss'
 # normalize assets
 gem 'normalize-scss'
 
+# .env config
+gem 'dotenv', groups: [:development, :test]
+
 # rails-assets are also supported
 # source 'https://rails-assets.org' do
 #   gem 'rails-assets-bootstrap'
