@@ -1,5 +1,7 @@
 require './home/variation_cell'
 
+ENTER_KEY = 13
+
 module Components
   class Wallet
     include Inesita::Component
@@ -14,10 +16,40 @@ module Components
 
     def update_value_content(event)
       store.update_value_content(`event.native.target.value`.to_f)
+      send_transaction if `event.native.keyCode` == ENTER_KEY
     end
 
     def update_recipient_content(event)
       store.update_recipient_content(`event.native.target.value`)
+      send_transaction if `event.native.keyCode` == ENTER_KEY
+    end
+
+    def send_rubycoin_transaction(to, value)
+      store.contract[:instance].transfer(to, value) do |err, result|
+        # Maybe do something one day
+      end
+    end
+
+    def send_ether_transaction(to, value)
+      Web3::Eth.send_transaction({
+        from: store.account,
+        to: to,
+        value: Web3.to_wei(value)
+      }) do |error, result|
+        # Maybe do something one day
+      end
+    end
+
+    def send_transaction
+      to = store.sending[:to]
+      value = store.sending[:value_content]
+      if to != "" && value != 0
+        if store.sending_rbc?
+          send_rubycoin_transaction(to, value)
+        elsif store.sending_eth?
+          send_ether_transaction(to, value)
+        end
+      end
     end
 
     def render
