@@ -24,26 +24,18 @@ contract RubyCoin is Ownable {
     uint _value
   );
 
-  struct Semver {
-    uint major;
-    uint minor;
-    uint patch;
-  }
-
-  Semver public version; // Version of the contract, following Semver.
+  string public version; // Version of the contract, following Semver.
   string public name;
   string public symbol;
   uint8  public decimals;
 
   constructor(
-    uint _major,
-    uint _minor,
-    uint _patch
+    string _version
   ) Ownable() public {
-    version = Semver(_major, _minor, _patch);
+    version = _version;
     name = "RubyCoin";
     symbol = "RBC";
-    decimals = 6;
+    decimals = 0;
     balances[msg.sender] = 1e9;
   }
 
