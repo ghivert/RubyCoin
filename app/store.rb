@@ -81,7 +81,10 @@ class Store
   end
 
   def get_rubycoin_balance
-    # TODO
+    @contract[:instance].balance_of(@account) do |error, result|
+      @rubycoin_balance = ::BigNumber.new(result)
+      render!
+    end
   end
 
   def get_ethereum_balance
