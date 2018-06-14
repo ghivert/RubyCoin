@@ -25,9 +25,7 @@ module Components
     end
 
     def send_rubycoin_transaction(to, value)
-      store.contract[:instance].transfer(to, value) do |err, result|
-        # Maybe do something one day
-      end
+      # TODO
     end
 
     def send_ether_transaction(to, value)
