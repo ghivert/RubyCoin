@@ -61,8 +61,8 @@ contract RubyCoin is Ownable {
     address _from,
     address _to,
     uint _value
-  ) public onlyOwner returns (bool success) {
     // Do Something here!
+  ) public returns (bool success) {
   }
 
   /// @dev Returns the amount a spender can withdraw for another account.
