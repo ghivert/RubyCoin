@@ -12,17 +12,7 @@ contract RubyCoin is Ownable {
   ///   Allowance is stored as (SpenderAddress => ValueAllowedToSpent).
   mapping (address => mapping (address => uint)) withdrawAllowance;
 
-  event Transfer(
-    address indexed _from,
-    address indexed _to,
-    uint _value
-  );
-
-  event Approval(
-    address indexed _owner,
-    address indexed _spender,
-    uint _value
-  );
+  // Define events Transfer and Approval here!
 
   string public version; // Version of the contract, following Semver.
   string public name;
@@ -32,22 +22,18 @@ contract RubyCoin is Ownable {
   constructor(
     string _version
   ) Ownable() public {
-    version = _version;
-    name = "RubyCoin";
-    symbol = "RBC";
-    decimals = 0;
-    balances[msg.sender] = 1e9;
+    // Do Something here!
   }
 
   /// @dev Returns the total supply of existing token.
   function totalSupply() public pure returns (uint) {
-    return 1e9;
+    // Do Something here!
   }
 
   /// @dev Returns the balance of tokens of someone.
   /// @param _owner The person you want to check balance.
   function balanceOf(address _owner) public view returns (uint) {
-    return balances[_owner];
+    // Do Something here!
   }
 
   /// @dev Transfer some token to someone else.
@@ -55,14 +41,7 @@ contract RubyCoin is Ownable {
   /// @param _value The amount to transfer.
   /// @return True if transfer is successfull, False otherwise.
   function transfer(address _to, uint _value) public returns (bool success) {
-    if (balances[msg.sender] < _value) {
-      revert();
-    } else {
-      balances[msg.sender] -= _value;
-      balances[_to] += _value;
-      emit Transfer(msg.sender, _to, _value);
-      return true;
-    }
+    // Do Something here!
   }
 
   /// @dev Approve a third party to withdraw a certain amount of tokens for the owner.
@@ -70,9 +49,7 @@ contract RubyCoin is Ownable {
   /// @param _value The maximum value the spender will be able to withdraw.
   /// @return True if approving successfull, False otherwise.
   function approve(address _spender, uint _value) public returns (bool success) {
-    withdrawAllowance[msg.sender][_spender] = _value;
-    emit Approval(msg.sender, _spender, _value);
-    return true;
+    // Do Something here!
   }
 
   /// @dev Transfer some tokens form one account to the other if previously approved.
@@ -85,15 +62,7 @@ contract RubyCoin is Ownable {
     address _to,
     uint _value
   ) public onlyOwner returns (bool success) {
-    if (withdrawAllowance[_from][msg.sender] < _value) {
-      revert();
-    } else {
-      withdrawAllowance[_from][msg.sender] -= _value;
-      balances[_to] += _value;
-      balances[_from] -= _value;
-      emit Transfer(_from, _to, _value);
-      return true;
-    }
+    // Do Something here!
   }
 
   /// @dev Returns the amount a spender can withdraw for another account.
@@ -104,6 +73,6 @@ contract RubyCoin is Ownable {
     address _owner,
     address _spender
   ) public view returns (uint remaining) {
-    return withdrawAllowance[_owner][_spender];
+    // Do something here!
   }
 }
